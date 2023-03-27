@@ -1,0 +1,42 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	arr := []int{5000, 5001, 7, 2, 6, 3}
+	fmt.Println(quickSort(arr))
+
+}
+
+func quickSort(arr []int) []int {
+	if len(arr) < 2 {
+		return arr
+	}
+	left, right := 0, len(arr)-1
+	pivot := rand.Int() % len(arr)                  //определение опорного элемента
+	arr[pivot], arr[right] = arr[right], arr[pivot] //меняем местами последний и средний элементы
+	//чтобы проходить в цикле по всему списку
+	fmt.Println(arr[right])
+	fmt.Println(arr[left], "-0-0-0-0-")
+
+	//проходимся по срезу и меняем местами элементы большие right
+	for i := range arr {
+		fmt.Println(arr, "---")
+		if arr[i] < arr[right] {
+			arr[left], arr[i] = arr[i], arr[left] //меняем местами элементы
+			left++
+		}
+	}
+	arr[left], arr[right] = arr[right], arr[left]
+	fmt.Println(left, "+s")
+	//сортировка до последнего элемента дошедшего в цикле
+	quickSort(arr[:left])
+	fmt.Println(len(arr), "len")
+	//сортировка после элемента дошедшего в цикле
+	quickSort(arr[left+1:])
+
+	return arr
+}
