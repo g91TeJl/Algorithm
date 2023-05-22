@@ -77,7 +77,6 @@ func (s *singleList) Print() error {
 func PrintAllListElements(s *singleList) {
 	currentList := s
 	for currentList != nil {
-		fmt.Println("-------")
 		for currentList.root != nil {
 			fmt.Println(currentList.root.value)
 			currentList.root = currentList.root.next
